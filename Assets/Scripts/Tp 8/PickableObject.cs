@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class PickableObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public bool isPickable = true;
+    public bool Exit = false;
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.tag == "PlayerInteractionZone")
+        {
+            other.GetComponentInParent<PickUpObject>().ObjectToPickUp = this.gameObject;
+            other.GetComponentInParent<PickUpObject>().ObjectToPickUp2 = this.gameObject;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        
+        if (other.tag == "PlayerInteractionZone")
+        {
+            other.GetComponentInParent<PickUpObject>().ObjectToPickUp = null;
+            other.GetComponentInParent<PickUpObject>().ObjectToPickUp2 = null;
+            Exit = true;
+        }
     }
 }
