@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerInteractionZone
+  - mesa
+  - Silla
+  - mouse
+  - NPC
   layers:
   - Default
   - TransparentFX
