@@ -10,32 +10,44 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI btnTxt;
     [SerializeField] string[] NPCDialogue;
     [SerializeField] NPCDialogue NPCDialogueScript;
-    private Timer timer;
     int dialogueIndex = 0;
+
+    [Header("Timer")]
+    [SerializeField] private int minutes;
+    [SerializeField] private int seconds;
+
+    [SerializeField] private TextMeshProUGUI timer;
+
+    private float restante;
+    private bool enMarcha;
+
+    int DialogueIndex;
+
+    void Awake()
+    {
+        restante = (minutes * 60) + seconds;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        timer = GetComponent<Timer>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (dialogueIndex == 5)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            btnTxt.text = "Cerrar";
+            ShowNextDialogueLine();
         }
-        else
-        {
-            btnTxt.text = "Siguiente";
-        }
-        
+
     }
 
     void OnTriggerEnter(Collider other)
     {
         NPCDialogueScript = other.gameObject.GetComponent<NPCDialogue>();
+        dialogueIndex = 0;
         if (NPCDialogueScript)
         {
             UIElements.SetActive(true);
@@ -51,24 +63,27 @@ public class DialogueManager : MonoBehaviour
             UIElements.SetActive(false);
             dialogueIndex = 0;
         }
-
-        if ( dialogueIndex == 5)
-        {
-            timer.startTimer();
-        }
     }
 
     public void ShowNextDialogueLine()
     {
-        if (dialogueIndex <= NPCDialogue.Length)
+        Debug.Log("Se esta ejecutando");
+        if (dialogueIndex < NPCDialogue.Length)
         {
             dialogueTxt.text = NPCDialogue[dialogueIndex];
             dialogueIndex++;
         }
-        else if (dialogueIndex == 5 && btnTxt.text == "Cerrar")
-        {
-            UIElements.SetActive(false);
-        }
+    } 
 
+    private void StartTimer()
+    {
+        if (enMarcha)
+        {
+            restante -= Time.deltaTime;
+            if (restante < 1)
+            {
+                //EndGame
+            }
+        }
     }
 }

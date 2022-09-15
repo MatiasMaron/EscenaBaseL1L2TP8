@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PickUpObject : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class PickUpObject : MonoBehaviour
     public Transform interactionZone;
     public Transform ZonaADejar;
     private bool ExitHere;
+
+    [Header("Objetos")]
+    public TextMeshProUGUI txtObjetos;
 
     [Header("ObjetosAEncontrar")] 
     public GameObject Gabinete;
@@ -21,7 +25,7 @@ public class PickUpObject : MonoBehaviour
 
     void Start()
     {
-        ExitHere = GetComponent<PickableObject>().Exit;
+        //ExitHere = GetComponent<PickableObject>().Exit;
     }
 
     // Update is called once per frame
@@ -107,5 +111,8 @@ public class PickUpObject : MonoBehaviour
                 objetosEncontrados++;
             }
         }
+
+        txtObjetos.text = ("ObjetosEncontrados " + objetosEncontrados + "/4");
+
     }
 }
