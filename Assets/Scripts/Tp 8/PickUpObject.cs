@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PickUpObject : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PickUpObject : MonoBehaviour
 
     [Header("Objetos")]
     public TextMeshProUGUI txtObjetos;
+    public TextMeshProUGUI txtMision;
 
     [Header("ObjetosAEncontrar")] 
     public GameObject Gabinete;
@@ -25,7 +27,8 @@ public class PickUpObject : MonoBehaviour
 
     void Start()
     {
-        //ExitHere = GetComponent<PickableObject>().Exit;
+        txtObjetos.enabled = false;
+        txtMision.enabled = false;
     }
 
     // Update is called once per frame
@@ -111,8 +114,12 @@ public class PickUpObject : MonoBehaviour
                 objetosEncontrados++;
             }
         }
+            txtObjetos.text = ("Objetos Encontrados " + objetosEncontrados + "/4");
 
-        txtObjetos.text = ("ObjetosEncontrados " + objetosEncontrados + "/4");
+        if (objetosEncontrados == 4)
+        {
+            SceneManager.LoadScene(2);
+        }
 
     }
 }

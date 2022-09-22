@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -11,15 +12,21 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] string[] NPCDialogue;
     [SerializeField] NPCDialogue NPCDialogueScript;
     int dialogueIndex = 0;
+    private bool iniciartimer = false;
+    private bool iniciartimer2 = false;
+
+    [Header("Textos")]
+    [SerializeField] public TextMeshProUGUI objetos;
+    [SerializeField] public  TextMeshProUGUI mision;
 
     [Header("Timer")]
-    [SerializeField] private int minutes;
-    [SerializeField] private int seconds;
+    [SerializeField] public int minutes;
+    [SerializeField] public int seconds;
 
     [SerializeField] private TextMeshProUGUI timer;
 
     private float restante;
-    private bool enMarcha;
+    public bool enMarcha;
 
     int DialogueIndex;
 
@@ -42,6 +49,20 @@ public class DialogueManager : MonoBehaviour
             ShowNextDialogueLine();
         }
 
+        if (dialogueIndex == 5)
+        {
+            iniciartimer2 = true;
+        }
+
+        if (iniciartimer == true && iniciartimer2 == true)
+        {
+            enMarcha = true;
+            objetos.enabled = true;
+            mision.enabled = true;
+        }
+
+        StartTimer();
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -61,6 +82,7 @@ public class DialogueManager : MonoBehaviour
         if (other.gameObject.CompareTag("NPC"))
         {
             UIElements.SetActive(false);
+            iniciartimer = true;
             dialogueIndex = 0;
         }
     }
@@ -82,8 +104,11 @@ public class DialogueManager : MonoBehaviour
             restante -= Time.deltaTime;
             if (restante < 1)
             {
-                //EndGame
+                SceneManager.LoadScene(1);
             }
+            int tempMin = Mathf.FloorToInt(restante / 60);
+            int tempSeg = Mathf.FloorToInt(restante % 60);
+            timer.text = string.Format("{00:00}:{01:00}", tempMin, tempSeg);
         }
     }
 }
