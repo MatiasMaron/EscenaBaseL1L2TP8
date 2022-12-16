@@ -9,6 +9,7 @@ TagManager:
   - Silla
   - mouse
   - NPC
+  - npc
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +8,8 @@ public class scriptmovimiento : MonoBehaviour
 {
 
     [SerializeField] Animator anim;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +24,10 @@ public class scriptmovimiento : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entro");
+        if (other.CompareTag("npc"))
+        {  
         anim.SetBool("Walking", false);
         anim.SetBool("RTurn", true);
+        }
     }
 }

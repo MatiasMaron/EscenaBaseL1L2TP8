@@ -20,6 +20,8 @@ public class PickUpObject : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] Transform NPCPosition;
     [SerializeField] GameObject npc;
+    [SerializeField] GameObject Destination;
+    public bool Chequeo = false;
 
     [Header("Objetos")]
     public TextMeshProUGUI txtObjetos;
@@ -125,11 +127,11 @@ public class PickUpObject : MonoBehaviour
         }
             txtObjetos.text = ("Objetos Encontrados " + objetosEncontrados + "/4");
 
-        if (objetosEncontrados == 4)
+        if (objetosEncontrados == 4 && Chequeo == false)
         {
             agent.destination = destination.position;
             anim.SetBool("Walking", true);
+            Chequeo = true;
         }
-
     }
 }

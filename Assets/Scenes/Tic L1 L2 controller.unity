@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311912, g: 0.3807398, b: 0.3587271, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -144,6 +144,8 @@ MonoBehaviour:
   anim: {fileID: 241865445}
   NPCPosition: {fileID: 241865446}
   npc: {fileID: 241865444}
+  Destination: {fileID: 0}
+  Chequeo: 0
   txtObjetos: {fileID: 1937335075}
   txtMision: {fileID: 1383524379}
   Gabinete: {fileID: 419964725}
@@ -597,18 +599,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1771332174}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &241865447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241865444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8062b41128f2cf24eac6531b14818279, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &241865448
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1290,7 +1280,7 @@ GameObject:
   - component: {fileID: 605087928}
   m_Layer: 0
   m_Name: Jero
-  m_TagString: NPC
+  m_TagString: npc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12585,7 +12575,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250084539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.811, y: 0.76351595, z: 9.11}
+  m_LocalPosition: {x: -9.838, y: 0.76351595, z: 9.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13818,6 +13808,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: modelado_Pesonaje_fem (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100084, guid: 968f6fea6b3305245b31d8e92f661b60, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 968f6fea6b3305245b31d8e92f661b60, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.57
@@ -13889,6 +13883,17 @@ PrefabInstance:
     - target: {fileID: 9500000, guid: 968f6fea6b3305245b31d8e92f661b60, type: 3}
       propertyPath: m_CullingMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 968f6fea6b3305245b31d8e92f661b60, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed by
+        Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+        'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tand
+        more ...\n\tFrom animation clip 'mixamo.com'\n\tFrom animation clip 'mixamo.com'\n\tFrom
+        animation clip 'mixamo.com'"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 968f6fea6b3305245b31d8e92f661b60, type: 3}
