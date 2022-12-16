@@ -44,6 +44,11 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enMarcha == false)
+        {
+            timer.enabled = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             ShowNextDialogueLine();
@@ -101,6 +106,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (enMarcha)
         {
+            timer.enabled = true;
             restante -= Time.deltaTime;
             if (restante < 1)
             {
