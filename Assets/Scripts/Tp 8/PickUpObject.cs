@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class PickUpObject : MonoBehaviour
 {
@@ -12,6 +13,14 @@ public class PickUpObject : MonoBehaviour
     public Transform interactionZone;
     public Transform ZonaADejar;
     private bool ExitHere;
+
+    [Header("NPC")]
+    NavMeshAgent agent;
+    [SerializeField] Transform destination;
+    [SerializeField] Animator anim;
+    [SerializeField] Transform NPCPosition;
+    [SerializeField] GameObject npc;
+    private bool llegoposicion = false;
 
     [Header("Objetos")]
     public TextMeshProUGUI txtObjetos;
@@ -29,6 +38,7 @@ public class PickUpObject : MonoBehaviour
     {
         txtObjetos.enabled = false;
         txtMision.enabled = false;
+        agent = npc.GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -116,9 +126,15 @@ public class PickUpObject : MonoBehaviour
         }
             txtObjetos.text = ("Objetos Encontrados " + objetosEncontrados + "/4");
 
-        if (objetosEncontrados == 4)
+        if (objetosEncontrados == 4 && llegoposicion == false)
         {
-            SceneManager.LoadScene(2);
+            agent.destination = destination.position;
+            anim.SetBool("Walking", true);
+            llegoposicion = true;
+        }
+        else if (agent.pathEndPosition == destination.position)
+        {
+            anim.SetBool("Walking", false);
         }
 
     }
